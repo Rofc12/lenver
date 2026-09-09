@@ -23,6 +23,15 @@
   }
 }
 
+/* iOS Safari (y cualquier navegador en iPhone, todos usan WebKit) no
+   soporta bien background-attachment: fixed — el fondo puede no pintarse
+   y quedar en blanco. Se desactiva el efecto fijo en pantallas pequeñas. */
+@media (max-width: 768px) {
+  .section {
+    background-attachment: scroll;
+  }
+}
+
 .section::before {
   content: "";
   position: absolute;
