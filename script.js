@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   document
-    .querySelectorAll(".text-quienes, .gif-box, .service-card, .project-card, .presupuesto-content")
+    .querySelectorAll(".text-quienes, .gif-box, .service-card, .project-card, .presupuesto-content, .servicios")
     .forEach((el) => observer.observe(el));
 
   // Tarjetas de servicios: expandir al tocar en móvil
