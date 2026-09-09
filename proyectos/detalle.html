@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Detalle de proyecto realizado por Lenver: fotos antes y después, y descripción del trabajo.">
+  <meta name="theme-color" content="#ffffff">
+  <title>LENVER</title>
+
+  <link rel="icon" type="image/x-icon" href="/img-icon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img-icon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img-icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/img-icon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="/img-icon/favicon-64x64.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img-icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img-icon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/img-icon/android-chrome-512x512.png">
+  <link rel="manifest" href="/img-icon/site.webmanifest">
+  <meta name="msapplication-config" content="/img-icon/browserconfig">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="proyectos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="/index.html" data-no-history>
+        <img src="/img/LOGO.webp" alt="Logo Constructora Lenver" class="logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="/index.html" data-no-history>Inicio</a></li>
+        <li><a href="/proyectos/proyectos.html" data-no-history>Proyectos</a></li>
+        <li><a href="/contacto/contacto.html" data-no-history>Contacto</a></li>
+      </ul>
+      <div class="hamburger" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <a href="https://wa.me/34618079138" target="_blank" rel="noopener" class="whatsapp-float" id="whatsapp-float-detalle" aria-label="Escríbenos por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <div class="proyectos-hero-bg">
+    <a href="proyectos.html" class="btn-volver" data-no-history>← Volver</a>
+
+    <h1 id="titulo" class="heading-gradient"></h1>
+
+    <main class="detalle-contenedor">
+      <div id="ba-slider" class="ba-slider" hidden>
+        <div class="ba-img-container">
+          <img class="ba-after" id="ba-after" alt="Después">
+          <div class="ba-before-wrap" id="ba-before-wrap">
+            <img class="ba-before" id="ba-before" alt="Antes">
+          </div>
+          <div class="ba-handle" id="ba-handle" aria-hidden="true">
+            <i class="fas fa-arrows-alt-h"></i>
+          </div>
+          <span class="ba-label ba-label-before">Antes</span>
+          <span class="ba-label ba-label-after">Después</span>
+        </div>
+        <input type="range" class="ba-range" id="ba-range" min="0" max="100" value="50" aria-label="Deslizar para comparar antes y después">
+      </div>
+
+      <div class="carousel">
+        <button class="carousel-btn prev" aria-label="Imagen anterior">❮</button>
+        <div class="carousel-images" id="carousel-images"></div>
+        <button class="carousel-btn next" aria-label="Imagen siguiente">❯</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+
+      <p id="descripcion"></p>
+
+      <hr>
+      <h2 class="heading-gradient">Otros Proyectos</h2>
+      <div id="otros-proyectos" class="grid"></div>
+
+      <div class="btn-box">
+        <a href="proyectos.html" class="btn" data-no-history>Ver más proyectos</a>
+      </div>
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <img src="/img/CONTACTOLOGO.webp" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+      </div>
+
+      <div class="footer-col">
+        <h3>Consultas</h3>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:construccioneslenver@gmail.com">construccioneslenver@gmail.com</a></p>
+        <p><i class="fas fa-phone"></i> <a href="https://wa.me/34618079138" target="_blank" rel="noopener">+34 618 07 91 38</a></p>
+      </div>
+
+      <div class="footer-col direccion">
+        <h3>Redes Sociales</h3>
+        <div class="social-icons">
+          <a href="https://instagram.com/tuusuario" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/Pablo83rodriguez/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <footer>
+      <p class="derechos">© <span id="year"></span> Constructora Lenver - Todos los derechos reservados</p>
+
+  </footer>
+
+  <script src="proyectos.js" defer></script>
+  <script src="/common.js" defer></script>
+  <script src="proyectos-page.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      mostrarDetalle(params.get("id"));
+
+      // El botón de WhatsApp aparece solo al llegar al footer, no desde
+      // el principio como en la página de Contacto.
+      const whatsappDetalle = document.getElementById("whatsapp-float-detalle");
+      const footer = document.getElementById("footer");
+      if (whatsappDetalle && footer) {
+        const footerObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              whatsappDetalle.classList.toggle("show", entry.isIntersecting);
+            });
+          },
+          { threshold: 0.15 }
+        );
+        footerObserver.observe(footer);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+/* =====================================================
+   LENVER — Estilos comunes (header, nav, footer, base)
+   ===================================================== */
+
+:root {
+  --color-primary: #00bcd4;
+  --color-primary-dark: #03abcf;
+  --color-primary-darker: #04172b;
+  --color-dark: #222222;
+  --color-text: #333333;
+  --color-logo-start: #278293;
+  --color-logo-end: #24353d;
+  --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --header-height: 78px;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  color: var(--color-text);
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Accesibilidad: foco visible para teclado */
+a:focus-visible,
+button:focus-visible,
+.hamburger:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Logo */
+.logo {
+  height: 50px;
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-smooth), opacity 0.25s ease;
+}
+
+.logo:hover {
+  transform: scale(1.04);
+}
+
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  width: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.85) 30%, rgba(0, 0, 0, 0.85) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 15px 30px;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3000;
+  top: 0;
+  left: 0;
+  transition: transform 0.35s var(--ease-smooth);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+header.hide {
+  transform: translateY(-100%);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Navegación */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: color 0.25s var(--ease-smooth);
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary-dark);
+  transition: width 0.3s var(--ease-smooth);
+}
+
+.nav-links li a:hover {
+  color: var(--color-primary-dark);
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+.nav-links li a.activo {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+.nav-links li a.activo::after {
+  width: 100%;
+}
+
+/* Hamburguesa */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 4000;
+  margin-left: auto;
+  position: relative;
+  padding: 8px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease-smooth);
+  z-index: 2000;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive nav */
+@media (max-width: 768px) {
+  header {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.85) 43%, rgba(0, 0, 0, 0.85) 100%);
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    height: 100vh;
+    width: 260px;
+    background: rgba(20, 20, 20, 0.97);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 34px;
+    transition: right 0.4s var(--ease-smooth);
+    z-index: 3000;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* El logo se desvanece mientras el menú móvil está abierto, para que
+     el panel no lo tape a medias en pantallas angostas */
+  body.no-scroll .logo {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+}
+
+/* ===== FOOTER ===== */
+#footer {
+  background: linear-gradient(to bottom, #ffffff 0%, var(--color-dark) 10%, var(--color-dark) 100%);
+  color: #fff;
+  padding: 80px 20px 50px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+  gap: 30px;
+  text-align: center;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-col h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: var(--color-primary);
+}
+
+.footer-logo {
+  max-width: 120px;
+  margin-bottom: 15px;
+  transition: transform 0.3s var(--ease-smooth);
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 1.6rem;
+  margin: 0 10px;
+  display: inline-block;
+  transition: transform 0.3s var(--ease-smooth), color 0.3s var(--ease-smooth);
+}
+
+.social-icons a:hover {
+  color: var(--color-primary);
+  transform: scale(1.2) translateY(-3px);
+}
+
+.footer-col p {
+  margin: 10px 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-col i {
+  margin-right: 10px;
+  color: var(--color-primary);
+}
+
+.footer-col a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s var(--ease-smooth);
+}
+
+.footer-col a:hover {
+  color: var(--color-primary);
+}
+
+.direccion p {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-col {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .footer-col p {
+    justify-content: center;
+  }
+}
+
+.derechos {
+  text-align: center;
+  color: #ccc;
+  background-color: var(--color-dark);
+  padding: 16px 20px;
+  font-size: 0.9rem;
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== Títulos con color del logo (celeste → azul oscuro) ===== */
+.heading-gradient {
+  color: var(--color-logo-end);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.heading-gradient::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-logo-start), var(--color-primary), var(--color-logo-end));
+  background-size: 200% auto;
+  animation: heading-underline 5s linear infinite;
+}
+
+@keyframes heading-underline {
+  to { background-position: -200% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading-gradient::after {
+    animation: none;
+  }
+}
+
+/* ===== Botón flotante de WhatsApp (reutilizable en cualquier página) ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out), box-shadow 0.3s var(--ease-smooth);
+  z-index: 9999;
+}
+
+.whatsapp-float.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.whatsapp-float:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  transform: scale(1.08);
+}
+
+/* Burbuja de mensaje opcional junto al botón */
+.whatsapp-bubble {
+  position: absolute;
+  right: 72px;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  background: #fff;
+  color: #222;
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(4, 23, 43, 0.22);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.whatsapp-bubble::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #fff;
+}
+
+.whatsapp-bubble.show {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 420px) {
+  .whatsapp-bubble {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 74px;
+    transform: translateX(-50%) translateY(8px);
+    white-space: normal;
+    max-width: 220px;
+    text-align: center;
+  }
+
+  .whatsapp-bubble::after {
+    top: auto;
+    right: auto;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px 6px 0 6px;
+    border-color: #fff transparent transparent transparent;
+  }
+
+  .whatsapp-bubble.show {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ===== Botón genérico reutilizable (píldora cian) ===== */
+.btn-box {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  background: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 10;
+  position: relative;
+  font-weight: 600;
+  transition: background 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.35);
+}
+
+.btn:hover {
+  background: var(--color-primary-darker);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}

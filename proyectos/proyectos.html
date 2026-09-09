@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Descubre los proyectos de construcción, reformas y rehabilitación realizados por Lenver.">
+  <meta name="theme-color" content="#ffffff">
+  <title>LENVER</title>
+
+  <link rel="icon" type="image/x-icon" href="/img-icon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img-icon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img-icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/img-icon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="/img-icon/favicon-64x64.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img-icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img-icon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/img-icon/android-chrome-512x512.png">
+  <link rel="manifest" href="/img-icon/site.webmanifest">
+  <meta name="msapplication-config" content="/img-icon/browserconfig">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="proyectos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="/index.html" data-no-history>
+        <img src="/img/LOGO.webp" alt="Logo Constructora Lenver" class="logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="/index.html" data-no-history>Inicio</a></li>
+        <li><a href="#proyectos" class="activo">Proyectos</a></li>
+        <li><a href="/contacto/contacto.html" data-no-history>Contacto</a></li>
+      </ul>
+      <div class="hamburger" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <div class="proyectos-hero-bg">
+    <div class="titulo-manchas">
+      <div class="titulo-panel"></div>
+      <h1 class="heading-gradient">Nuestros Proyectos</h1>
+    </div>
+
+    <main id="lista-proyectos" class="grid"></main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <img src="/img/CONTACTOLOGO.webp" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+      </div>
+
+      <div class="footer-col">
+        <h3>Consultas</h3>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:construccioneslenver@gmail.com">construccioneslenver@gmail.com</a></p>
+        <p><i class="fas fa-phone"></i> <a href="https://wa.me/34618079138" target="_blank" rel="noopener">+34 618 07 91 38</a></p>
+      </div>
+
+      <div class="footer-col direccion">
+        <h3>Redes Sociales</h3>
+        <div class="social-icons">
+          <a href="https://instagram.com/tuusuario" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/Pablo83rodriguez/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <footer>
+      <p class="derechos">© <span id="year"></span> Constructora Lenver - Todos los derechos reservados</p>
+
+  </footer>
+
+  <script src="proyectos.js" defer></script>
+  <script src="/common.js" defer></script>
+  <script src="proyectos-page.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => listarProyectos());
+  </script>
+</body>
+</html>

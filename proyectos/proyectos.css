@@ -1,0 +1,508 @@
+/* =====================================================
+   LENVER — Proyectos (listado y detalle)
+   ===================================================== */
+
+/* ===== Fondo suave de la página (mismo criterio que Presupuesto/Contacto) ===== */
+.proyectos-hero-bg {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-top: 130px;
+  padding-bottom: 30px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1fcfe 40%, #ffffff 100%);
+}
+
+.proyectos-hero-bg::before,
+.proyectos-hero-bg::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: -1;
+  opacity: 0.28;
+}
+
+.proyectos-hero-bg::before {
+  top: -140px;
+  left: -110px;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+}
+
+.proyectos-hero-bg::after {
+  top: 280px;
+  right: -140px;
+  background: radial-gradient(circle, var(--color-logo-end) 0%, transparent 70%);
+}
+
+h1 {
+  margin: 0 0 32px;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+  font-family: 'Anton', 'Segoe UI', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  padding-top: 30px;
+  transform: translateY(20px);
+  animation: fadeInTitle 0.9s var(--ease-out) forwards;
+}
+
+/* Panel geométrico bicolor detrás del título (bordes rectos, sin difuminar) */
+.titulo-manchas {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.titulo-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, 88vw);
+  height: 110px;
+  border-radius: 10px;
+  background: linear-gradient(
+    100deg,
+    var(--color-logo-start) 0%,
+    var(--color-logo-start) 48%,
+    var(--color-logo-end) 52%,
+    var(--color-logo-end) 100%
+  );
+  opacity: 0.14;
+  z-index: 0;
+}
+
+.titulo-manchas h1 {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .titulo-panel {
+    height: 80px;
+  }
+}
+
+/* Título de detalle: misma tipografía y bicolor que el logo LENVER */
+#titulo {
+  font-family: 'Anton', 'Segoe UI', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+#titulo .titulo-mitad-a {
+  color: var(--color-logo-start);
+}
+
+#titulo .titulo-mitad-b {
+  color: var(--color-logo-end);
+}
+
+@media (max-width: 600px) {
+  #titulo {
+    font-size: 1.7rem;
+  }
+}
+
+@keyframes fadeInTitle {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botón volver */
+.btn-volver {
+  position: static;
+  margin: 0 0 24px 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  z-index: 1000;
+  transition: background 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+  display: inline-block;
+}
+
+.btn-volver:hover {
+  background: var(--color-primary-darker);
+  transform: translateX(-4px) scale(1.03);
+}
+
+/* Grid de proyectos */
+.grid,
+#otros-proyectos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+#otros-proyectos {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+@media (max-width: 992px) {
+  .grid,
+  #otros-proyectos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid,
+  #otros-proyectos {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 10px 26px rgba(4, 23, 43, 0.14);
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 34px rgba(4, 23, 43, 0.22);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease-smooth);
+}
+
+.card:hover img {
+  transform: scale(1.06);
+}
+
+/* Velo oscuro en la parte baja para que el texto se lea sobre cualquier foto */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 23, 43, 0) 45%, rgba(4, 23, 43, 0.82) 100%);
+  pointer-events: none;
+}
+
+.card-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  background: rgba(0, 188, 212, 0.92);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.card-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 18px;
+}
+
+.card-content h3 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  color: #fff;
+  text-align: left;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0.85;
+  transition: opacity 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+}
+
+.card:hover .card-link {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.7s var(--ease-out) forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#otros-proyectos .card-content h3 {
+  font-size: 1.05rem;
+}
+
+.detalle-contenedor hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 2px solid #eee;
+}
+
+.detalle-contenedor h2 {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  color: #222;
+  text-align: center;
+}
+
+/* Carrusel */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-images {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background: #eee;
+}
+
+.carousel-images img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+}
+
+.carousel-images img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: none;
+  font-size: 1.8rem;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 3;
+  transition: opacity 0.5s ease-in-out, background 0.3s var(--ease-smooth), transform 0.2s var(--ease-smooth);
+  opacity: 1;
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s var(--ease-smooth), transform 0.2s var(--ease-smooth);
+}
+
+.dot:hover {
+  transform: scale(1.25);
+}
+
+.dot.active {
+  background-color: var(--color-primary);
+}
+
+.carousel-dots.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.detalle-contenedor p#descripcion {
+  background: #f9f9f9;
+  padding: 1.2rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #333;
+  max-width: 750px;
+  margin: 2rem auto;
+  text-align: justify;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInDesc 0.9s var(--ease-out) forwards;
+}
+
+@keyframes fadeInDesc {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Slider "antes / después" ===== */
+.ba-slider {
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.ba-img-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  cursor: ew-resize;
+  user-select: none;
+}
+
+.ba-after {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.ba-before-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ba-before-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.ba-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 4px;
+  background: #fff;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.ba-handle i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  color: var(--color-primary-dark);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ba-label {
+  position: absolute;
+  bottom: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ba-label-before { left: 12px; }
+.ba-label-after { right: 12px; }
+
+.ba-range {
+  width: 100%;
+  margin-top: 12px;
+  accent-color: var(--color-primary);
+  cursor: ew-resize;
+}
+
+@media (max-width: 600px) {
+  .ba-img-container {
+    height: 260px;
+  }
+}

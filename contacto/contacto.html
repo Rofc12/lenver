@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacta con Lenver, construcción y reformas en Vilanova de Arousa y alrededores. Correo, WhatsApp y redes sociales.">
+  <meta name="theme-color" content="#ffffff">
+  <title>LENVER</title>
+
+  <link rel="icon" type="image/x-icon" href="/img-icon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img-icon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img-icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/img-icon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="/img-icon/favicon-64x64.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img-icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img-icon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/img-icon/android-chrome-512x512.png">
+  <link rel="manifest" href="/img-icon/site.webmanifest">
+  <meta name="msapplication-config" content="/img-icon/browserconfig">
+
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+
+  <link rel="stylesheet" href="/common.css">
+  <link rel="stylesheet" href="contacto.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/index.html" data-no-history>
+        <img src="/img/LOGO.webp" alt="Logo Constructora Lenver" class="logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="/index.html" data-no-history>Inicio</a></li>
+        <li><a href="/proyectos/proyectos.html" data-no-history>Proyectos</a></li>
+        <li><a href="#!" class="activo">Contacto</a></li>
+      </ul>
+      <div class="hamburger" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <a href="https://wa.me/34618079138" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Escríbenos por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-bubble" id="whatsapp-bubble">¿Tienes un proyecto? ¡Contáctanos!</span>
+  </a>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="contact-intro reveal">
+      <h2 class="title heading-gradient">Contacto</h2>
+      <p class="subtitle">
+        ¡Gracias por querer ponerte en contacto con nosotros! Valoramos tu interés en nuestros servicios de
+        <strong>construcción y reformas</strong>. Responderemos a tu mensaje lo antes posible para ayudarte con tu proyecto.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-map reveal">
+        <h3><i class="fas fa-map-marker-alt"></i> Zona de trabajo</h3>
+        <p>Vilanova de Arousa y alrededores.</p>
+        <div id="map" class="map-frame"></div>
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-card reveal">
+          <h3><i class="fas fa-envelope"></i> Correo electrónico</h3>
+          <p><a href="mailto:construccioneslenver@gmail.com">construccioneslenver@gmail.com</a></p>
+        </div>
+
+        <div class="contact-card reveal">
+          <h3><i class="fas fa-phone"></i> Teléfono</h3>
+          <p><a href="https://wa.me/34618079138" target="_blank" rel="noopener">+34 618 07 91 38</a></p>
+        </div>
+
+        <div class="contact-card reveal">
+          <h3><i class="fas fa-share-alt"></i> Redes sociales</h3>
+          <div class="socials">
+            <a class="social-btn" href="https://www.facebook.com/Pablo83rodriguez/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a class="social-btn" href="https://instagram.com/tuusuario" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <img src="/img/CONTACTOLOGO.webp" alt="Logo" class="footer-logo" loading="lazy" decoding="async">
+      </div>
+
+      <div class="footer-col">
+        <h3>Consultas</h3>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:construccioneslenver@gmail.com">construccioneslenver@gmail.com</a></p>
+        <p><i class="fas fa-phone"></i> <a href="https://wa.me/34618079138" target="_blank" rel="noopener">+34 618 07 91 38</a></p>
+      </div>
+
+      <div class="footer-col direccion">
+        <h3>Redes Sociales</h3>
+        <div class="social-icons">
+          <a href="https://instagram.com/tuusuario" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/Pablo83rodriguez/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+ 
+  <footer>
+    <p class="derechos">© <span id="year"></span> Constructora Lenver - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
+  <script src="/common.js" defer></script>
+  <script src="contacto.js" defer></script>
+</body>
+</html>

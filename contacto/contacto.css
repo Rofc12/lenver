@@ -1,0 +1,222 @@
+/* =====================================================
+   LENVER — Contacto
+   ===================================================== */
+
+#contacto {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  margin-top: 130px;
+  padding: 70px 20px 90px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1fcfe 100%);
+  color: var(--color-text);
+  max-width: 1200px;
+  margin-inline: auto;
+  border-radius: 24px;
+  animation: fadeInContacto 0.9s var(--ease-out);
+}
+
+/* Manchas de luz suaves de fondo, igual criterio que en "Presupuesto" */
+#contacto::before,
+#contacto::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+#contacto::before {
+  top: -140px;
+  right: -100px;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+}
+
+#contacto::after {
+  bottom: -160px;
+  left: -120px;
+  background: radial-gradient(circle, var(--color-logo-start) 0%, transparent 70%);
+}
+
+@keyframes fadeInContacto {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.contact-intro {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+#contacto .title {
+  font-size: clamp(28px, 3.5vw, 42px);
+  margin-bottom: 15px;
+}
+
+#contacto .subtitle {
+  color: #556;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 25px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tarjetas: estilo claro consistente con el resto del sitio */
+.contact-map,
+.contact-info .contact-card {
+  background: #ffffff;
+  border: 1px solid #e3f5f8;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 8px 24px rgba(4, 23, 43, 0.06);
+  transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+}
+
+.contact-map {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-map h3,
+.contact-info .contact-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  margin-bottom: 6px;
+  color: var(--color-logo-end);
+}
+
+.contact-map h3 i,
+.contact-info .contact-card h3 i {
+  color: var(--color-primary-dark);
+  font-size: 18px;
+}
+
+.contact-map p {
+  color: #667;
+  font-size: 15px;
+}
+
+.map-frame {
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e3f5f8;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-info .contact-card {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUpCard 0.8s var(--ease-out) forwards;
+}
+
+.contact-info .contact-card:nth-child(1) { animation-delay: 0.05s; }
+.contact-info .contact-card:nth-child(2) { animation-delay: 0.15s; }
+.contact-info .contact-card:nth-child(3) { animation-delay: 0.25s; }
+
+.contact-map:hover,
+.contact-info .contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(4, 23, 43, 0.1);
+}
+
+.contact-info .contact-card p,
+.contact-info .contact-card a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.contact-info .contact-card a:hover {
+  color: var(--color-primary-dark);
+}
+
+.socials {
+  display: flex;
+  gap: 15px;
+  margin-top: 6px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary-dark);
+  font-size: 20px;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.social-btn:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.social-btn[aria-label="Facebook"]:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+}
+
+.social-btn[aria-label="Instagram"]:hover {
+  background: #e1306c;
+  border-color: #e1306c;
+}
+
+
+
+@keyframes slideUpCard {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animaciones al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  #contacto {
+    padding: 50px 16px 70px;
+    border-radius: 16px;
+  }
+
+  .map-frame {
+    height: 320px;
+  }
+}
+
