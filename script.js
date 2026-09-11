@@ -38,4 +38,44 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".service-card").forEach((card) => {
     card.addEventListener("click", () => card.classList.toggle("active"));
   });
+
+    // ---------------------------------------------------
+  // Parallax en móvil para el fondo del logo (.servicios)
+  // ---------------------------------------------------
+  // background-attachment: fixed no es fiable en iPhone (todos los
+  // navegadores ahí usan WebKit) y puede dejar la imagen en blanco. Se
+  // desactiva en pantallas pequeñas (ver styles.css) y aquí se simula el
+  // mismo efecto de profundidad moviendo el fondo con background-position
+  // según el scroll, que sí es compatible con iOS.
+  const heroBg = document.querySelector(".servicios");
+  const mobileQuery = window.matchMedia("(max-width: 768px)");
+
+  if (heroBg) {
+    let ticking = false;
+
+    const updateParallax = () => {
+      if (mobileQuery.matches) {
+        const rect = heroBg.getBoundingClientRect();
+        const offset = rect.top * 0.3; // velocidad del efecto
+        heroBg.style.backgroundPosition = `center calc(50% + ${offset}px)`;
+      } else {
+        heroBg.style.backgroundPosition = ""; // deja el CSS de escritorio intacto
+      }
+      ticking = false;
+    };
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    updateParallax();
+  }
+  
 });
