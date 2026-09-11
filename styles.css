@@ -25,52 +25,13 @@
 
 /* iOS Safari (y cualquier navegador en iPhone, todos usan WebKit) no
    soporta bien background-attachment: fixed — el fondo puede no pintarse
-   y quedar en blanco. Se desactiva el efecto fijo en pantallas pequeñas
-   y en su lugar se usa un efecto de "zoom" al entrar en pantalla
-   (activado por el mismo IntersectionObserver que ya usa el sitio,
-   añadiendo la clase .show). */
+   y quedar en blanco. En pantallas pequeñas se desactiva y en su lugar
+   script.js simula el mismo efecto moviendo background-position según
+   el scroll. */
 @media (max-width: 768px) {
   .section {
     background-attachment: scroll;
   }
-
-  .servicios {
-    background-size: 130%;
-    transition: background-size 1.4s var(--ease-out);
-  }
-
-  .servicios.show {
-    background-size: cover;
-  }
-}
-
-.section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.section .content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  align-items: center;
-  gap: 40px;
-}
-
-.show {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
 }
 
 /* ===== Quiénes somos ===== */
